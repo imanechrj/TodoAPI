@@ -11,9 +11,10 @@ namespace ToDoAPI.Modeles
 		public string Title { get; set; }
 		public bool IsDone { get; set; }
 
-        public Todo(int id)
+        public Todo()
         {
-            Id = id;
+            Date = DateTime.Now;
+            IsDone = false;
         }
 
         public int Create()
@@ -27,7 +28,8 @@ namespace ToDoAPI.Modeles
                 command.Parameters.AddWithValue("@Title", Title);
                 command.Parameters.AddWithValue("@IsDone", IsDone);
 
-                return command.ExecuteNonQuery();
+                Id = command.ExecuteNonQuery();
+                return Id;
             }
         }
     }

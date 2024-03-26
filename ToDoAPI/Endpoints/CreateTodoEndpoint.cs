@@ -16,12 +16,12 @@ namespace ToDoAPI.Endpoints
 
         public override async Task HandleAsync(CreateTodoRequest request, CancellationToken ct)
         {
-            var todo = new Todo(100)
+            var todo = new Todo()
             {
                 Title = request.Title,
-                Date = DateTime.Now,
-                IsDone = false
             };
+
+            var id = todo.Create();
 
             var response = new CreateTodoResponse
             {
